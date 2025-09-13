@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbgvp8vobn2xb"]
+[gd_scene load_steps=5 format=3 uid="uid://cbgvp8vobn2xb"]
 
 [ext_resource type="Script" uid="uid://bou8jjxa50ivf" path="res://Scripts/mainRoom.gd" id="1_tcvbn"]
 [ext_resource type="Texture2D" uid="uid://csejjyfsav3qi" path="res://Assets/mainRoom.png" id="2_ye0ij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcvbn"]
 size = Vector2(132, 1346)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye0ij"]
+size = Vector2(210, 513)
 
 [node name="mainRoom" type="Node2D"]
 script = ExtResource("1_tcvbn")
@@ -31,7 +34,7 @@ shape = SubResource("RectangleShape2D_tcvbn")
 [node name="WindowArea" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowArea"]
-position = Vector2(2467, 495)
+position = Vector2(2201, 496)
 polygon = PackedVector2Array(42, -219, -24, -181, -25, 209, 44, 229)
 
 [node name="MailboxArea" type="Area2D" parent="."]
@@ -40,7 +43,14 @@ polygon = PackedVector2Array(42, -219, -24, -181, -25, 209, 44, 229)
 position = Vector2(111, 1343)
 polygon = PackedVector2Array(-111, -128, -55, -163, 129, -10, 159, 116, -111, 113)
 
+[node name="TelephoneArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TelephoneArea"]
+position = Vector2(1919, 926.5)
+shape = SubResource("RectangleShape2D_ye0ij")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="input_event" from="mainDoorArea" to="." method="_on_main_door_area_input_event"]
 [connection signal="input_event" from="WindowArea" to="." method="_on_window_area_input_event"]
 [connection signal="input_event" from="MailboxArea" to="." method="_on_mailbox_area_input_event"]
+[connection signal="input_event" from="TelephoneArea" to="." method="_on_telephone_area_input_event"]

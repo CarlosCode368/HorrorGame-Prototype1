@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b53akkkqpe1fm"]
+
+[ext_resource type="Script" uid="uid://bcmja7v0vxdha" path="res://Telephone.gd" id="1_4tfhl"]
+[ext_resource type="Texture2D" uid="uid://b7qqlflcuycs1" path="res://Assets/Telephone.png" id="2_gappx"]
+
+[node name="Telephone" type="Node2D"]
+script = ExtResource("1_4tfhl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 2560.0
+offset_bottom = 1440.0
+texture = ExtResource("2_gappx")
+
+[node name="Button" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 1296.0
+offset_right = 393.0
+offset_bottom = 1360.0
+text = "Main Room View"
+
+[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

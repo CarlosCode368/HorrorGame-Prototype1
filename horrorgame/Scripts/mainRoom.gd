@@ -45,3 +45,14 @@ func show_job_order(order_text: String):
 	add_child(job_order_ui)  # Must be added before positioning
 	job_order_ui.position = $MailboxArea.global_position + Vector2(0, -100)
 	job_order_ui.set_order_text(Global.current_job)
+
+
+func _on_telephone_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		var fade_scene = preload("res://Scenes/FadeLayer.tscn")
+		var fade = fade_scene.instantiate()
+		add_child(fade)
+		await fade.fade_out(0.5, func():
+			get_tree().change_scene_to_file("res://Scenes/Telephone.tscn") 
+		)
+		
