@@ -11,5 +11,5 @@ func _on_button_pressed():
 	await fade.fade_out(0.5, func():
 		get_tree().change_scene_to_file("res://Scenes/mainDoor.tscn")
 		HUD.inventory_button.visible = true
-		HUD.quest_label.visible= true
+		HUD.quest_label.visible= GameState.mailbox_checked
 	)

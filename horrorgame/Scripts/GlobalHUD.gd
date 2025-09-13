@@ -22,5 +22,7 @@ func _on_inventory_button_pressed():
 	print("Inventory toggled:", Global.inventory_open)
 	
 	
+	
+	
 
 	
