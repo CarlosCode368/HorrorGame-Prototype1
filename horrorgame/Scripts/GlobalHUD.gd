@@ -21,3 +21,6 @@ func _on_inventory_button_pressed():
 	InventoryUI.visible = Global.inventory_open
 	print("Inventory toggled:", Global.inventory_open)
 	
+	
+
+	
