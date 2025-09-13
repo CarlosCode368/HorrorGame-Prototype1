@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7onmdobxhs8g"]
+
+[ext_resource type="Script" uid="uid://bsakxy7dq2wtu" path="res://Scripts/GlobalHUD.gd" id="1_n8mi7"]
+
+[node name="GlobalHud" type="CanvasLayer"]
+script = ExtResource("1_n8mi7")
+
+[node name="QuestLabel" type="RichTextLabel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -149.0
+offset_top = 73.0
+offset_right = -33.0
+offset_bottom = 148.0
+grow_horizontal = 0
+text = "Quests"
+
+[node name="InventoryButton" type="Button" parent="."]
+offset_left = 2390.0
+offset_top = 1322.0
+offset_right = 2473.0
+offset_bottom = 1362.0
+text = "Inventory"
+
+[connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo7uv3uauc5pm"]
+
+[ext_resource type="Script" uid="uid://ce7736wuod8c1" path="res://Scripts/InventoryOverlay.gd" id="1_weg02"]
+
+[node name="InventoryOverlay" type="CanvasLayer"]
+script = ExtResource("1_weg02")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.635071, 0.282183, 0.204401, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 68.0
+offset_right = 285.0
+offset_bottom = 91.0
+text = "Inventory Open"
+
+[node name="InventoryBackButton" type="Button" parent="."]
+offset_left = 2390.0
+offset_top = 1322.0
+offset_right = 2473.0
+offset_bottom = 1362.0
+text = "Back"
+
+[connection signal="pressed" from="InventoryBackButton" to="." method="_on_inventory_back_button_pressed"]

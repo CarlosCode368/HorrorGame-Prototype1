@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtobj0u40eu10"]
+
+[ext_resource type="Script" uid="uid://cl7g5cw23oh6i" path="res://Scripts/Hallway.gd" id="1_djdh2"]
+[ext_resource type="Texture2D" uid="uid://ctpcqsbykhiq5" path="res://Assets/Hallaway.png" id="1_quq2p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djdh2"]
+size = Vector2(517, 967)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak6jr"]
+size = Vector2(308, 1334)
+
+[node name="Hallway" type="Node2D"]
+script = ExtResource("1_djdh2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_quq2p")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 194.0
+offset_top = 1342.0
+offset_right = 406.0
+offset_bottom = 1381.0
+text = "Return to Main Room"
+
+[node name="BedroomDoorArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BedroomDoorArea"]
+position = Vector2(693.5, 808.5)
+shape = SubResource("RectangleShape2D_djdh2")
+
+[node name="KitchenDoorArea" type="Area2D" parent="."]
+position = Vector2(1502, 718)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KitchenDoorArea"]
+position = Vector2(335, -13)
+shape = SubResource("RectangleShape2D_ak6jr")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="input_event" from="BedroomDoorArea" to="." method="_on_bedroom_door_area_input_event"]
+[connection signal="input_event" from="KitchenDoorArea" to="." method="_on_kitchen_door_area_input_event"]

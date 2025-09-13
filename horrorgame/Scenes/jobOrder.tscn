@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd4m7mumf0oav"]
+
+[ext_resource type="Script" uid="uid://ky361dmc2otd" path="res://Scripts/jobOrder.gd" id="1_yrc07"]
+[ext_resource type="Texture2D" uid="uid://damhwomojd8xx" path="res://Assets/jobOrder.png" id="2_pacvg"]
+
+[node name="JobOrder" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yrc07")
+
+[node name="InputBlocker" type="ColorRect" parent="."]
+modulate = Color(0.309804, 0.105882, 0.0509804, 0)
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 1778.0
+color = Color(0.752941, 0.435294, 0.32549, 0.435294)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 1440.0
+texture = ExtResource("2_pacvg")
+
+[node name="Label" type="Label" parent="TextureRect"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 798.0
+offset_top = 275.0
+offset_right = 877.0
+offset_bottom = 307.0
+scale = Vector2(5, 5)
+text = "tasks"
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1675.0
+offset_top = 1260.0
+offset_right = 1788.0
+offset_bottom = 1310.0
+text = "Next
+"
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1675.0
+offset_top = 1262.0
+offset_right = 1788.0
+offset_bottom = 1304.0
+text = "Return"
+
+[connection signal="pressed" from="NextButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
