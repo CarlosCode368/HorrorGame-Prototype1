@@ -6,20 +6,21 @@
 script = ExtResource("1_weg02")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
+custom_minimum_size = Vector2(2560, 1400)
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.635071, 0.282183, 0.204401, 1)
+color = Color(0.635294, 0.282353, 0.203922, 1)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
 layout_mode = 0
-offset_left = 164.0
-offset_top = 68.0
-offset_right = 285.0
-offset_bottom = 91.0
-text = "Inventory Open"
+offset_left = 113.0
+offset_top = 135.0
+offset_right = 1523.0
+offset_bottom = 1288.0
+columns = 4
 
 [node name="InventoryBackButton" type="Button" parent="."]
 offset_left = 2390.0

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://crb5geinnlsin"]
+
+[ext_resource type="Script" uid="uid://ckxxmowe0fobb" path="res://itemSlot.gd" id="1_4ef7o"]
+
+[node name="ItemSlot" type="Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 237.0
+offset_top = 172.0
+offset_right = -2195.0
+offset_bottom = -1140.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ef7o")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = -60.0
+offset_top = -58.0
+offset_right = 68.0
+offset_bottom = 70.0
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 88.0
+offset_bottom = 95.0
+text = "1"
