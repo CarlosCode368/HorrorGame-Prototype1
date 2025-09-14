@@ -49,8 +49,15 @@ polygon = PackedVector2Array(-111, -128, -55, -163, 129, -10, 159, 116, -111, 11
 position = Vector2(1919, 926.5)
 shape = SubResource("RectangleShape2D_ye0ij")
 
+[node name="ShelfArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShelfArea"]
+position = Vector2(2404, 361)
+polygon = PackedVector2Array(-15, -357, -130, -290, -131, 416, 165, 489, 168, -370)
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="input_event" from="mainDoorArea" to="." method="_on_main_door_area_input_event"]
 [connection signal="input_event" from="WindowArea" to="." method="_on_window_area_input_event"]
 [connection signal="input_event" from="MailboxArea" to="." method="_on_mailbox_area_input_event"]
 [connection signal="input_event" from="TelephoneArea" to="." method="_on_telephone_area_input_event"]
+[connection signal="input_event" from="ShelfArea" to="." method="_on_shelf_area_input_event"]
