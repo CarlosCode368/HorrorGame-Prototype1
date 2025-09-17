@@ -1,40 +1,70 @@
 extends CanvasLayer
 
 func _ready():
-    layer = 20
-    visible = false
-    print("InventoryOverlay ready. Visible:", visible)
-
-    # Optional: force background visibility for debugging
-    $ColorRect.size = Vector2(800, 600)
+	layer = 20
+	visible = false
+	$ColorRect.size = Vector2(800, 600)
 
 func toggle_inventory():
-    print("TOGGLE INVENTORY FUNCTION CALLED")
-    visible = true
-    populate_inventory($ColorRect/GridContainer)
-    print("Overlay visibility:", visible)
+	visible = true
+	populate_inventory($ColorRect/GridContainer)
 
 func _on_inventory_back_button_pressed() -> void:
-    Global.inventory_open = false
-    visible = false
-    print("Inventory closed via back button.")
+	Global.inventory_open = false
+	visible = false
+	print("Inventory closed via back button.")
 
 func populate_inventory(grid: GridContainer):
-    print("Populating inventory...")
+	for child in grid.get_children():
+		grid.remove_child(child)
+		child.queue_free()
 
-    # Clear previous slots
-    for child in grid.get_children():
-        grid.remove_child(child)
-        child.queue_free()
+	for item_id in Global.inventory.keys():
+		var item_data = Global.inventory[item_id]
+		var slot = preload("res://Scenes/ItemSlot.tscn").instantiate()
+		slot.initialize(item_id, item_data["icon"], item_data["quantity"])
+		slot.connect("item_clicked", Callable(self, "_on_item_clicked"))
+		print("Connected signal for:", item_id)
+		grid.add_child(slot)
 
-    var keys = Global.inventory.keys()
-    print("Inventory keys at populate:", keys)
+func _on_item_clicked(item_id: String):
+	print("Item clicked in overlay:", item_id)
+	var item_data = Global.inventory.get(item_id)
+	if item_data == null:
+		print("Item not found:", item_id)
+		return
+	print("item_id == 'part_box':", item_id == "part_box")
+	if item_id == "part_box":
+		print("Unpacking part_box...")
+		Global.remove_item(item_id)
+		Global.add_item("part_battery_cell")
+		Global.add_item("part_wires")
+		populate_inventory($ColorRect/GridContainer)
+	else:
+		print("Clicked:", item_id)
 
-    for item_id in keys:
-        var item_data = Global.inventory[item_id]
-        print("Adding item:", item_id, "Icon is null:", item_data["icon"] == null)
+func replace_item_with_contents(item_id: String, contents: Array):
+	var grid := $ColorRect/GridContainer
+	var index := -1
 
-        var slot = preload("res://Scenes/ItemSlot.tscn").instantiate()
-        slot.initialize(item_id, item_data["icon"], item_data["quantity"])
-        grid.add_child(slot)
-    
+	for child in grid.get_children():
+		if child.name == item_id:
+			index = grid.get_children().find(child)
+			grid.remove_child(child)
+			child.queue_free()
+			break
+
+	if index == -1:
+		print("Item not found in grid:", item_id)
+		return
+
+	for content_id in contents:
+		var content_data = Global.inventory.get(content_id)
+		if content_data:
+			var slot = preload("res://Scenes/ItemSlot.tscn").instantiate()
+			slot.initialize(content_id, content_data["icon"], content_data["quantity"])
+			slot.connect("item_clicked", Callable(self, "_on_item_clicked"))
+			grid.add_child(slot)
+			grid.move_child(slot, index)
+			index += 1
+	

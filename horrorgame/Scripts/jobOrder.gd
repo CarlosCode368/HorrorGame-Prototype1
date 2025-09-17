@@ -87,5 +87,5 @@ func _on_return_pressed():
 				Global.add_item("rations", preload("res://Assets/Icons/RationsIcon.png"), rations)
 
 			if parts > 0:
-				Global.add_item("parts", preload("res://Assets/Icons/RationsIcon.png"), parts)
+				Global.add_item("part_box", preload("res://Assets/Icons/partBoxIcon.png"), parts)
 			queue_free()
