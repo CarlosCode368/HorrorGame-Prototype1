@@ -25,6 +25,7 @@ var job_order_instance: CanvasLayer = null
 func _ready():
 	print("Global ready. Inventory keys:", inventory.keys())
 
+# Inventory Management
 func add_item(id: String, icon: Texture = null, quantity: int = 1):
 	if icon == null and item_icons.has(id):
 		icon = item_icons[id]
@@ -49,11 +50,20 @@ func remove_item(id: String, quantity: int = 1):
 			print("Item reduced:", id, "New quantity:", inventory[id]["quantity"])
 		emit_signal("inventory_updated")
 
+func get_inventory_keys() -> Array:
+	return inventory.keys()
+
+func get_item_data(id: String) -> Dictionary:
+	if inventory.has(id):
+		return inventory[id]
+	return {}
+
 func deliver_mail_items(items: Array):
 	for item_id in items:
 		add_item(item_id)
 	print("Mail delivered:", items)
 
+# Quest System
 func advance_day():
 	day += 1
 	current_job = generate_job_for_day(day)
@@ -63,11 +73,9 @@ func advance_day():
 
 func generate_job_for_day(day: int) -> String:
 	match day:
-		0: return "Build 5 parts"
-		1: return "Assemble TYPE-3 Core"
-		2: return "Repair transistor"
-		_: return "Classified Task"
+		_: return "Build 1 Battery Pack"
 
+# Job Order UI
 func show_job_order():
 	if job_order_instance == null:
 		job_order_instance = job_order_scene.instantiate()

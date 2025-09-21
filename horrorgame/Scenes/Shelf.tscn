@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://3eblv0o5glf0"]
 
-[ext_resource type="Script" uid="uid://dlv5g4nrolw3w" path="res://Shelf.gd" id="1_ciy52"]
+[ext_resource type="Script" uid="uid://dlv5g4nrolw3w" path="res://Scripts/Shelf.gd" id="1_ciy52"]
 [ext_resource type="Texture2D" uid="uid://be3ciywtacfy2" path="res://Assets/Shelf.png" id="2_p8fi4"]
 
 [node name="Shelf" type="Node2D"]

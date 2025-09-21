@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crb5geinnlsin"]
 
-[ext_resource type="Script" uid="uid://ckxxmowe0fobb" path="res://itemSlot.gd" id="1_4ef7o"]
+[ext_resource type="Script" uid="uid://ckxxmowe0fobb" path="res://Scripts/itemSlot.gd" id="1_4ef7o"]
 
 [node name="ItemSlot" type="Control"]
 custom_minimum_size = Vector2(128, 128)

@@ -66,3 +66,13 @@ func _on_shelf_area_input_event(viewport: Node, event: InputEvent, shape_idx: in
 		await fade.fade_out(0.5, func():
 			get_tree().change_scene_to_file("res://Scenes/Shelf.tscn")
 			)
+
+
+func _on_workbench_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		var fade_scene = preload("res://Scenes/FadeLayer.tscn")
+		var fade = fade_scene.instantiate()
+		add_child(fade)
+		await fade.fade_out(0.5, func():
+			get_tree().change_scene_to_file("res://Scenes/Workbench.tscn")
+			)

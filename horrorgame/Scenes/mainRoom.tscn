@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbgvp8vobn2xb"]
+[gd_scene load_steps=6 format=3 uid="uid://cbgvp8vobn2xb"]
 
 [ext_resource type="Script" uid="uid://bou8jjxa50ivf" path="res://Scripts/mainRoom.gd" id="1_tcvbn"]
 [ext_resource type="Texture2D" uid="uid://csejjyfsav3qi" path="res://Assets/mainRoom.png" id="2_ye0ij"]
@@ -9,12 +9,15 @@ size = Vector2(132, 1346)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ye0ij"]
 size = Vector2(210, 513)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyt0h"]
+size = Vector2(1002, 289)
+
 [node name="mainRoom" type="Node2D"]
 script = ExtResource("1_tcvbn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 2560.0
+offset_bottom = 1440.0
 texture = ExtResource("2_ye0ij")
 
 [node name="Button" type="Button" parent="."]
@@ -55,9 +58,16 @@ shape = SubResource("RectangleShape2D_ye0ij")
 position = Vector2(2404, 361)
 polygon = PackedVector2Array(-15, -357, -130, -290, -131, 416, 165, 489, 168, -370)
 
+[node name="WorkbenchArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkbenchArea"]
+position = Vector2(1279, 1045.5)
+shape = SubResource("RectangleShape2D_oyt0h")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="input_event" from="mainDoorArea" to="." method="_on_main_door_area_input_event"]
 [connection signal="input_event" from="WindowArea" to="." method="_on_window_area_input_event"]
 [connection signal="input_event" from="MailboxArea" to="." method="_on_mailbox_area_input_event"]
 [connection signal="input_event" from="TelephoneArea" to="." method="_on_telephone_area_input_event"]
 [connection signal="input_event" from="ShelfArea" to="." method="_on_shelf_area_input_event"]
+[connection signal="input_event" from="WorkbenchArea" to="." method="_on_workbench_area_input_event"]

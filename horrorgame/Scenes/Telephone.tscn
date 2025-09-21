@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b53akkkqpe1fm"]
 
-[ext_resource type="Script" uid="uid://bcmja7v0vxdha" path="res://Telephone.gd" id="1_4tfhl"]
+[ext_resource type="Script" uid="uid://bcmja7v0vxdha" path="res://Scripts/Telephone.gd" id="1_4tfhl"]
 [ext_resource type="Texture2D" uid="uid://b7qqlflcuycs1" path="res://Assets/Telephone.png" id="2_gappx"]
 
 [node name="Telephone" type="Node2D"]

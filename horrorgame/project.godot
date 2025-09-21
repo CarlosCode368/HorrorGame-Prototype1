@@ -27,6 +27,11 @@ GameState="*res://Scripts/GameState.gd"
 window/size/viewport_width=2560
 window/size/viewport_height=1440
 
+[global_group]
+
+drag_layer=""
+active_drag_layer=""
+
 [rendering]
 
 renderer/rendering_method="mobile"
