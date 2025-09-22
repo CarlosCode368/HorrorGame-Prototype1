@@ -10,6 +10,8 @@ var job_order_shown := false
 var inventory_open := false
 var mail_shown := false
 var letters := []
+var currently_dragged_item = null
+var crafting_slot: Control = null
 
 var inventory := {}  # item_id → {icon, quantity}
 var item_icons := {
