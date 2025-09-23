@@ -15,6 +15,7 @@ func _ready():
     set_process(true)
     mouse_filter = Control.MOUSE_FILTER_STOP
     call_deferred("_check_drag_layer")
+    
 
 func _check_drag_layer():
     var drag_layer := get_drag_layer()

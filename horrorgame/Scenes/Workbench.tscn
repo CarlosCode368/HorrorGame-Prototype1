@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcaotwjpbc38f"]
+[gd_scene load_steps=7 format=3 uid="uid://dcaotwjpbc38f"]
 
 [ext_resource type="Script" uid="uid://bvd2gbybyeabl" path="res://Scripts/Workbench.gd" id="1_2mgss"]
 [ext_resource type="Texture2D" uid="uid://cyfulbnqpelrs" path="res://Assets/Workbench.png" id="2_hslw2"]
 [ext_resource type="Script" uid="uid://c8c3e8mbwoatx" path="res://Scripts/WorkbenchInventoryGrid.gd" id="3_hslw2"]
 [ext_resource type="Texture2D" uid="uid://dro1tpojeahuf" path="res://Assets/CraftingSlot.png" id="4_0m77r"]
 [ext_resource type="Script" uid="uid://cvnfqxcn5ntnb" path="res://Scripts/CraftingSlot.gd" id="5_i3h46"]
+[ext_resource type="Script" uid="uid://10p20ev8jdvt" path="res://Scripts/WorkbenchItemSlot.gd" id="6_i3h46"]
 
 [node name="Workbench" type="Node2D"]
 script = ExtResource("1_2mgss")
@@ -31,8 +32,8 @@ polygon = PackedVector2Array(216, -298, 37, 460, -74, 461, -72, -361, -20, -273,
 [node name="WorkbenchInventoryGrid" type="GridContainer" parent="."]
 offset_left = 113.0
 offset_top = 135.0
-offset_right = 1523.0
-offset_bottom = 1288.0
+offset_right = 644.0
+offset_bottom = 740.0
 columns = 4
 script = ExtResource("3_hslw2")
 
@@ -56,5 +57,20 @@ mouse_filter = 0
 texture = ExtResource("4_0m77r")
 script = ExtResource("5_i3h46")
 
+[node name="WorkbenchItemSlot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_i3h46")
+
+[node name="WorkbenchTextureButton" type="TextureButton" parent="WorkbenchItemSlot"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 227.0
+offset_right = 186.0
+offset_bottom = 267.0
+
 [connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]
 [connection signal="input_event" from="inventory_workbench" to="." method="_on_inventory_workbench_input_event"]
+[connection signal="pressed" from="WorkbenchItemSlot/WorkbenchTextureButton" to="WorkbenchItemSlot" method="_on_texture_button_pressed"]
