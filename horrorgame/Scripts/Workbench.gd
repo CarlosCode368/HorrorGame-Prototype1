@@ -1,54 +1,48 @@
 extends Node2D
 
-@onready var slot_scene := preload("res://Scenes/ItemSlot.tscn")
 
 func _ready():
-    HUD.inventory_button.visible = false
-    $WorkbenchDragLayer.add_to_group("active_drag_layer") 
+	HUD.inventory_button.visible = false
+	$WorkbenchDragLayer.add_to_group("active_drag_layer") 
 
-    var workbench_grid := $WorkbenchInventoryGrid
-    workbench_grid.scale = Vector2(0.8, 0.8)
-    workbench_grid.visible = false
+	var workbench_grid := $WorkbenchInventoryGrid
+	workbench_grid.scale = Vector2(0.8, 0.8)
+	workbench_grid.visible = false
 
-    for item_id in Global.get_inventory_keys():
-        var item_data = Global.get_item_data(item_id)
-        var slot := slot_scene.instantiate()
-        slot.initialize(item_id, item_data.icon, item_data.quantity, workbench_grid)
-        slot.item_clicked.connect(_on_item_clicked)
-        
-        
+	for item_id in Global.get_inventory_keys():
+		var item_data = Global.get_item_data(item_id)
+
+		
+		
 func _on_inventory_workbench_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-    if event is InputEventMouseButton and event.pressed:
-        var grid := $WorkbenchInventoryGrid
-        grid.toggle_inventory()
+	if event is InputEventMouseButton and event.pressed:
+		var grid := $WorkbenchInventoryGrid
+		grid.toggle_inventory()
 
-        # ✅ Re-register WorkbenchDragLayer when inventory is opened
-        if $WorkbenchDragLayer.is_inside_tree():
-            if not $WorkbenchDragLayer.is_in_group("active_drag_layer"):
-                $WorkbenchDragLayer.add_to_group("active_drag_layer")
-                print("✅ DragLayer re-added to group")
-        
+		# ✅ Re-register WorkbenchDragLayer when inventory is opened
+		if $WorkbenchDragLayer.is_inside_tree():
+			if not $WorkbenchDragLayer.is_in_group("active_drag_layer"):
+				$WorkbenchDragLayer.add_to_group("active_drag_layer")
+				print("✅ DragLayer re-added to group")
+		
 
 func _populate_workbench_grid():
-    var workbench_grid := $WorkbenchInventoryGrid
-    for item_id in Global.get_inventory_keys():
-        var item_data = Global.get_item_data(item_id)
-        var slot := slot_scene.instantiate()
-        slot.initialize(item_id, item_data.icon, item_data.quantity, workbench_grid)  # ✅ Fixed
-        slot.item_clicked.connect(_on_item_clicked)
-        workbench_grid.add_child(slot)
+	var workbench_grid := $WorkbenchInventoryGrid
+	for item_id in Global.get_inventory_keys():
+		var item_data = Global.get_item_data(item_id)
+
 
 func _on_item_clicked(item_id: String) -> void:
-    print("Clicked item:", item_id)
-    # Optional: unpacking, delivery, inspection logic
+	print("Clicked item:", item_id)
+	# Optional: unpacking, delivery, inspection logic
 
 func _on_button_pressed(): 
-    var fade_scene = preload("res://Scenes/FadeLayer.tscn")
-    var fade = fade_scene.instantiate()
-    add_child(fade)
-    await fade.fade_out(0.5, func():
-        get_tree().change_scene_to_file("res://Scenes/mainRoom.tscn")
-        HUD.inventory_button.visible = true
-    )
+	var fade_scene = preload("res://Scenes/FadeLayer.tscn")
+	var fade = fade_scene.instantiate()
+	add_child(fade)
+	await fade.fade_out(0.5, func():
+		get_tree().change_scene_to_file("res://Scenes/mainRoom.tscn")
+		HUD.inventory_button.visible = true
+	)
 
-        
+		
